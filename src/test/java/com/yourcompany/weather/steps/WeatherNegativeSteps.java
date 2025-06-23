@@ -1,9 +1,9 @@
 package com.yourcompany.weather.steps;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.yourcompany.weather.enums.ApiError;
 import com.yourcompany.weather.util.AllureAttachmentHelper;
 import io.cucumber.java.en.*;
+import com.fasterxml.jackson.databind.JsonNode;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +14,7 @@ public class WeatherNegativeSteps extends BaseSteps {
         int code = Integer.parseInt(errorCode);
         ApiError apiError = ApiError.fromCode(code);
 
-        stubBuilder.stubError(city, code, apiError.getMessage());
+        stubBuilder.stubError(city, apiError);
         response = apiClient.getCurrentWeather(city, API_KEY);
     }
 

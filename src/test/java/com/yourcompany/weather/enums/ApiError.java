@@ -12,8 +12,8 @@ public enum ApiError {
     LIMIT_REACHED(400, 2006, "API request limit reached."),
     CUSTOM(400, 9999, "Custom error for testing.");
 
-    private final int httpStatus;    // HTTP код
-    private final int code;          // внутренний код API ошибки
+    private final int httpStatus;
+    private final int code;
     private final String message;
 
     ApiError(int httpStatus, int code, String message) {
