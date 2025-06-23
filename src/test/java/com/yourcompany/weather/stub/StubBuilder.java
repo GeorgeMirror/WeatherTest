@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.yourcompany.weather.dto.WeatherResponse;
+import com.yourcompany.weather.enums.HttpStatus;
 import lombok.SneakyThrows;
 
 public class StubBuilder {
@@ -23,7 +24,7 @@ public class StubBuilder {
                 WireMock.get(WireMock.urlPathEqualTo("/v1/current.json"))
                         .withQueryParam("q", WireMock.equalTo(city))
                         .willReturn(WireMock.aResponse()
-                                .withStatus(200)
+                                .withStatus(HttpStatus.OK.getCode())
                                 .withHeader("Content-Type", "application/json")
                                 .withBody(json))
         );
@@ -34,7 +35,7 @@ public class StubBuilder {
                 WireMock.get(WireMock.urlPathEqualTo("/v1/current.json"))
                         .withQueryParam("q", WireMock.equalTo(city))
                         .willReturn(WireMock.aResponse()
-                                .withStatus(400)
+                                .withStatus(HttpStatus.BAD_REQUEST.getCode())
                                 .withHeader("Content-Type", "application/json")
                                 .withBody("{ \"error\": { \"code\": " + code + ", \"message\": \"" + message + "\" } }"))
         );

@@ -24,8 +24,8 @@ public abstract class BaseSteps {
     protected CityWeather expectedCityWeather;
 
     public BaseSteps() {
-        // Здесь нужно получить WireMockServer, например, из TestHooks
-        WireMockServer wireMockServer = TestHooks.server.getWireMock();
+        // Получаем WireMockServer через WireMockManager из TestHooks
+        WireMockServer wireMockServer = TestHooks.getWireMockServer();
 
         this.context = new TestContext(wireMockServer);
 
