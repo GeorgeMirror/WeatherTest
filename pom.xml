@@ -159,15 +159,20 @@
 
       <!-- Surefire -->
       <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
         <configuration>
           <includes>
             <include>**/*Test.java</include>
             <include>**/*Tests.java</include>
+            <include>**/*TestRunner.java</include>
           </includes>
+          <useModulePath>false</useModulePath>
+          <forkCount>1</forkCount>
+          <reuseForks>true</reuseForks>
           <systemPropertyVariables>
-            <allure.results.directory>${project.basedir}/allure-results</allure.results.directory>
+            <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
           </systemPropertyVariables>
         </configuration>
       </plugin>
