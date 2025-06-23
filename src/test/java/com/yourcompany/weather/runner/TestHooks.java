@@ -7,24 +7,27 @@ import io.cucumber.java.BeforeAll;
 
 public class TestHooks {
 
-    public static final WireMockManager server = new WireMockManager();
+    public static WireMockManager server;
 
     @BeforeAll
-    public static void beforeAll() {
+    public static void setUp() {
+        server = new WireMockManager();
         server.start();
+        System.out.println("WireMock server started at: " + server.getBaseUrl());
     }
 
     @AfterAll
-    public static void afterAll() {
-        server.stop();
+    public static void tearDown() {
+        if (server != null) {
+            server.stop();
+            System.out.println("WireMock server stopped.");
+        }
     }
 
-    // Если нужно, предоставляем метод получения WireMockServer
     public static WireMockServer getWireMockServer() {
-        return server.getWireMockServer();
+        return server.getWireMock();  // правильный вызов метода из WireMockManager
     }
 
-    // Также для удобства возвращаем baseUrl
     public static String getBaseUrl() {
         return server.getBaseUrl();
     }
