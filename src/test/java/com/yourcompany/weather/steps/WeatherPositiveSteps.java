@@ -16,9 +16,9 @@ public class WeatherPositiveSteps extends BaseSteps {
         this.expectedCityWeather = cityWeather;
 
         var stubResponse = WeatherMapper.toWeatherResponse(cityWeather);
-        stubBuilder.stubSuccess(city, stubResponse);
+        stubBuilder.stubSuccess(city, stubResponse); // теперь из context
 
-        response = apiClient.getCurrentWeather(city, API_KEY);
+        response = apiClient.getCurrentWeather(city, API_KEY); // тоже из context
     }
 
     @Then("the response contains weather data close to standard city:")
@@ -27,7 +27,7 @@ public class WeatherPositiveSteps extends BaseSteps {
 
         assertEquals(ApiError.SUCCESS.getHttpStatus(), response.statusCode(), "Expected HTTP status 200");
 
-        JsonNode current = responseParser.getCurrentNode(response);
-        validator.validateWeather(current, etalonCity.getTempC(), etalonCity.getHumidity(), etalonCity.getCondition());
+        JsonNode current = responseParser.getCurrentNode(response); // тоже из context
+        validator.validateWeather(current, etalonCity.getTempC(), etalonCity.getHumidity(), etalonCity.getCondition()); // тоже из context
     }
 }

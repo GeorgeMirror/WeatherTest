@@ -29,67 +29,90 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Cucumber -->
+    <!-- Cucumber dependencies -->
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-java</artifactId>
       <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-junit-platform-engine</artifactId>
       <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>io.cucumber</groupId>
-      <artifactId>cucumber-junit</artifactId>
-      <version>${cucumber.version}</version>
-      <scope>test</scope>
-    </dependency>
+
     <dependency>
       <groupId>io.cucumber</groupId>
       <artifactId>cucumber-picocontainer</artifactId>
       <version>${cucumber.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- javax.inject for DI annotations -->
     <dependency>
       <groupId>javax.inject</groupId>
       <artifactId>javax.inject</artifactId>
       <version>1</version>
       <scope>provided</scope>
     </dependency>
+
+    <!-- WireMock -->
     <dependency>
       <groupId>com.github.tomakehurst</groupId>
       <artifactId>wiremock-jre8</artifactId>
       <version>${wiremock.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- RestAssured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
       <version>${restassured.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Allure dependencies -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-junit5</artifactId>
       <version>${allure.version}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>io.qameta.allure</groupId>
       <artifactId>allure-cucumber7-jvm</artifactId>
       <version>${allure.version}</version>
       <scope>test</scope>
+      <exclusions>
+        <!-- исключаем конфликтующий gherkin -->
+        <exclusion>
+          <groupId>io.cucumber</groupId>
+          <artifactId>gherkin</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+
+    <!-- SLF4J simple for logging -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- SLF4J API -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <!-- Jackson core/annotations/databind -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-core</artifactId>
@@ -105,24 +128,22 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.15.2</version>
     </dependency>
+
+    <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.30</version> <!-- последняя стабильная -->
+      <version>1.18.30</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>2.0.7</version>
-    </dependency>
+
+    <!-- Logback classic -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>1.4.11</version>
     </dependency>
   </dependencies>
-
 
   <build>
     <plugins>
@@ -136,7 +157,7 @@
         </configuration>
       </plugin>
 
-      <!-- Surefire для тестов -->
+      <!-- Surefire -->
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.1.2</version>
@@ -151,7 +172,7 @@
         </configuration>
       </plugin>
 
-      <!-- Allure Maven Plugin для генерации отчетов -->
+      <!-- Allure Maven Plugin -->
       <plugin>
         <groupId>io.qameta.allure</groupId>
         <artifactId>allure-maven</artifactId>
