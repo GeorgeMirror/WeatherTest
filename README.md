@@ -64,7 +64,7 @@ src/main/resources/logback.xml
 ## Особенности реализации
 
 - Используется `WireMock` на динамическом порте, сервер управляется через `WireMockManager`
-- Запросы и ответы строго валидируются (в позитивных и негативных сценариях)
+- Запросы и ответы валидируются (в позитивных и негативных сценариях)
 - Все шаги разделены по ответственности: `BaseSteps`, `CommonSteps`, `WeatherPositiveSteps`, `WeatherNegativeSteps`
 - Маппинг таблиц через `WeatherMapper` и `TableMapper`
 - DTO покрыты `lombok`
